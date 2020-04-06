@@ -1,1 +1,3 @@
 # PSU-regExUtil
+
+simple ruby tool to process a csv file with headers (id, text) with a reg ex, outputs a headerless csv with id, match1, ...
