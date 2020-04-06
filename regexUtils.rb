@@ -51,9 +51,7 @@ define_method (:loadRegex){
 
 #returns array of arrays  [id, text] , removes invalid (nil) rows
 def preProcess( inPath )
-  defpath= '../../datos/'
-  inPath = defpath + inPath+'.csv'
-  p inPath
+  inPath = inPath
   data = CSV.parse(File.read(inPath.to_s), headers:true )
   ret = data['id'].zip data['text']
   ret.reject! { |r| r.nil?||r[0].nil?||r[1].nil? }
@@ -92,9 +90,10 @@ define_method (:main){
   if ARGV[0].nil?
     return  puts help
   end
-  outPath = ARGV[2].nil? ? "./out/#{ARGV[0]}#{ARGV[1]}matches.csv" : "./out/#{ARGV[2]}.csv"
+  outPath = ARGV[2].nil? ? "./#{ARGV[0][0..-5]}#{ARGV[1]}matches.csv" : "./#{ARGV[2]}"
   rex = loadRegex( ARGV[1] )
   data = preProcess( ARGV[0] )
+  puts "[in]: #{ARGV[0]} ====>> [out]: #{outPath}"
   writeMatches(  outPath , applyRx( data , rex ) )
 }
 
