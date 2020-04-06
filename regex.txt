@@ -1,0 +1,6 @@
+#los comentarios se identifican con # al inicio
+# las expresiones regulares en este archivo se identifican con '; ' después del nombre
+# por ejemplo la siguiente ER se llama 'ejemploER' y captura hasta 25 caracteres después de de la/s vereda/s
+ejemploER; de\slas?\sveredas?\s(.{1,25})
+btest; empty
+test; en\s(.)
