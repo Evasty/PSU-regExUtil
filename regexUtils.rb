@@ -49,8 +49,9 @@ end
   
 define_method (:loadRegex){
   |reName|
-  reName.nil? ? regexDict['-2'] : File.foreach( "./regex.txt" ) {
+  reg = reName.nil? ? regexDict['-2'] :  !regexDict[reName].nil? ?  regexDict[reName] : File.foreach( "./regex.txt", encoding: 'UTF-8' )  {
     |rxf| 
+    
     if (rxf[0] == '#') 
       next 
     end
@@ -58,7 +59,7 @@ define_method (:loadRegex){
       return rxf[/^#{reName};\s(.+)/, 1]
     end
   }
-  
+  return reg
 }
 
 #returns array of arrays  [id, text] , removes invalid (nil) rows
@@ -126,9 +127,10 @@ define_method (:main){
     writeMatches(  outPath , BBres , heads)
   else
     rex = loadRegex( ARGV[2] )
+    p rex
     data = preProcess( ARGV[0] )
     puts "[in]: #{ARGV[0]} ====>> [out]: #{outPath}"
-    writeMatches(  outPath , applyRx( data , rex ) )
+    writeMatches(  outPath , applyRx( data , rex ), ['id', rex] )
   end
   
 }
