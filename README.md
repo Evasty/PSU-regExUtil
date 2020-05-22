@@ -20,7 +20,7 @@ Fun => processes a CSV as required
 Line => returns matches in a line as a hashmap
 JSON => returns JSONobject w matches
 
-note Line and Json receive a regex hashmap {'name' => /regex/}
+note Line and Json receive a regex hashmap {'name' => /regex/} (there is a default hashmap tho :shrug:)
 
 It is recommended to understand regular expressions:
 https://www.rubyguides.com/2015/06/ruby-regex/
