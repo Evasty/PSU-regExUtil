@@ -64,14 +64,14 @@ define_method (:loadRegex){
 #returns array of arrays  [id, text] , removes invalid (nil) rows
 def preProcess( inPath )
   inPath = inPath
-  data = CSV.parse(File.read(inPath.to_s), headers:true )
+  data = CSV.parse(File.read(inPath.to_s), headers:true , encoding: 'UTF-8')
   ret = data['id'].zip data['text']
   ret.reject! { |r| r.nil?||r[0].nil?||r[1].nil? }
 end
 
 def preProcessBB( inPath )
   inPath = inPath
-  data = CSV.parse(File.read(inPath.to_s), headers:true )
+  data = CSV.parse(File.read(inPath.to_s), headers:true , encoding: 'UTF-8')
   ret = data[data.headers[0]].zip data[data.headers[1]], data[data.headers[2]], data[data.headers[3]], data[data.headers[4]], data[data.headers[5]], data[data.headers[6]], data[data.headers[7]], data[data.headers[8]], data[data.headers[9]], data[data.headers[10]], data[data.headers[11]], data[data.headers[12]]
   ret.reject! { |r| r.nil?||r[0].nil?}
   return data,ret

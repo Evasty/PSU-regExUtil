@@ -24,4 +24,5 @@ note Line and Json receive a regex hashmap {'name' => /regex/} (there is a defau
 
 It is recommended to understand regular expressions:
 https://www.rubyguides.com/2015/06/ruby-regex/
+
 https://regexr.com
